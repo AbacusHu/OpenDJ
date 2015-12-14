@@ -1,12 +1,17 @@
-##OPENDJ是什么?
-OPENDJ是基于OPENDS的开源LDAP项目，为版权问题不再叫OPENDS改名为OPENDJ。
+#OPENDJ技术分享
+* OPENDJ是什么
+* OPENDJ启动过程分析
+* OPENDJ处理LDAP请求过程分析
 
-##OPENDJ启动
-* 启动脚本 
+##OPENDJ是什么?
+OPENDJ是基于OPENDS的开源LDAP项目，因为License原因，改名为OPENDJ。
+
+##OPENDJ启动过程分析
+* 启动命令 
 ```
 sh start-ds
 ```
-* 进程实例 
+* 进程示例 
 ```
 /home/opendj/jdk1.6.0_45/jre/bin/java -server -Dorg.opends.server.scriptName=start-ds org.opends.server.core.DirectoryServer --configClass org.opends.server.extensions.ConfigFileHandler --configFile /home/opendj/asinst_ins/upds/config/config.ldif
 ```
@@ -174,6 +179,6 @@ sh start-ds
         * 调用Connection Handler的start方法。
     * 启动成功记录成功启动的配置文件，拷贝config.ldif为config.ldif.startok  
     * 获取internal connection (InternalClientConnection(connID=-1, authDN="cn=Internal Client,cn=Root DNs,cn=config"))
-	* 如果没有禁用admin data同步，则同步admin data, 默认没有禁用。
+    * 如果没有禁用admin data同步，则同步admin data, 默认没有禁用。
     * 删除starting文件 upds/logs/server.starting文件
     * 删除hostname文件 upds/config/hostname文件
